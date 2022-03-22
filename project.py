@@ -15,7 +15,7 @@ Documentation:
     self.path_root = The idea is to allow the user to create a template that will
     reside in the place of their choosing.  The end goal will be for a user to
     choose the filepath from a GUI.
-asdf
+
 """
 
 
