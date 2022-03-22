@@ -28,30 +28,35 @@ class Project(Body):
     def createProjectFolder(self):
         os.mkdir(self.full_folder_path)
 
+    def createFolder(self, path):
+        if os.path.isdir(path):
+            print(path)
+            return path
+        else:
+            os.mkdir(path)
+            return path
+
+
     def createDefaultTemplate(self):
         if os.path.isdir(self.full_folder_path) == False:
             self.createProjectFolder()
 
-        self.www_folder_path = self.full_folder_path + "www/"
-        os.mkdir(self.full_folder_path + "www/")
+        with FileController(str(self.full_folder_path), "main.py", "w") as opened_file:
+            opened_file.write(self.createMainDotPy())
 
-        self.static_folder_path = self.full_folder_path + "www/static"
-        os.mkdir(self.full_folder_path + "www/static")
-
-        self.templates_folder_path = self.full_folder_path + "www/templates/"
-        os.mkdir(self.full_folder_path + "www/templates")
-
+        self.www_folder_path = self.createFolder(self.full_folder_path + "www/")
         with FileController(str(self.www_folder_path), "views.py", "w") as opened_file:
             opened_file.write(self.createViewsDotPy())
-
         with FileController(str(self.www_folder_path), "__init__.py", "w") as opened_file:
             opened_file.write(self.createInitDotPy())
 
+        self.static_folder_path = self.createFolder(self.full_folder_path + "www/static/")
+
+        self.templates_folder_path = self.createFolder(self.full_folder_path + "www/templates/")
         with FileController(str(self.templates_folder_path), "index.html", "w") as opened_file:
             opened_file.write(self.createIndexDotHtml())
 
-        with FileController(str(self.full_folder_path), "main.py", "w") as opened_file:
-            opened_file.write(self.createMainDotPy())
+
 
         
     
