@@ -31,26 +31,14 @@ class Project(Body):
             self.createProjectFolder()
         
         self.www_folder_path = self.createFolder(self.full_folder_path + "www/")
-        
+        self.templates_folder_path = self.createFolder(self.full_folder_path + "www/templates/")
+        self.static_folder_path = self.createFolder(self.full_folder_path + "www/static/")
+
         self.createFile(self.full_folder_path, "main.py", "w", self.createMainDotPy())
         self.createFile(self.www_folder_path, "views.py", "w", self.createViewsDotPy())
         self.createFile(self.www_folder_path, "__init__.py", "w", self.createInitDotPy())
 
-        self.static_folder_path = self.createFolder(self.full_folder_path + "www/static/")
-
-        self.templates_folder_path = self.createFolder(self.full_folder_path + "www/templates/")
-
         self.createFile(self.templates_folder_path, "index.html", "w", self.createIndexDotHtml())
-
-        # with FileController(str(self.full_folder_path), "main.py", "w") as opened_file:
-        #     opened_file.write(self.createMainDotPy())
-        # self.www_folder_path = self.createFolder(self.full_folder_path + "www/")
-        # with FileController(str(self.www_folder_path), "views.py", "w") as opened_file:
-        #     opened_file.write(self.createViewsDotPy())
-        # with FileController(str(self.www_folder_path), "__init__.py", "w") as opened_file:
-        #     opened_file.write(self.createInitDotPy())
-        # with FileController(str(self.templates_folder_path), "index.html", "w") as opened_file:
-        #     opened_file.write(self.createIndexDotHtml())
 
 
 
